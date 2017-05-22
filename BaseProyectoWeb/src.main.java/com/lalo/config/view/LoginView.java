@@ -19,7 +19,7 @@ import com.lalo.config.model.RelPerfilMenu;
  */
 @Component
 @SessionScoped
-@ManagedBean(name="loginView")
+@ManagedBean(name="loginView",eager=true)
 public class LoginView extends BackingBean implements ViewMethodDefault{
 	private static final long serialVersionUID = 1L;
 	@Autowired

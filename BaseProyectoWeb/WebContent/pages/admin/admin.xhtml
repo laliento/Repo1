@@ -8,20 +8,6 @@ xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://primefaces.org/ui"
 >
 	<ui:define name="content">
-		<h:form> 
-	            <p:dataTable value="#{pruebaView.lstAdmon}" id="tableBenefits"
-			var="atributo">
-			<p:column style="width:300px;" headerText="Email">
-				<h:outputText value="#{atributo.correo}"
-					style="font-size: 16px;	font-weight: bold; width:300px;" />
-			</p:column>
-			<p:column style="width:300px;" headerText="Perfil">
-				<h:outputText value="#{atributo.perfil.descripcion}"
-					style="font-size: 16px;	font-weight: bold; width:300px;" />
-			</p:column>
-		</p:dataTable>
-		<p:commandButton  action="#{pruebaView.irPagina}" ></p:commandButton>
-		<h:commandLink value = "irOtro" action = "/pages/admin/otro.xhtml" /> 
-		</h:form>
+		
     </ui:define>
 </ui:composition>

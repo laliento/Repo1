@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/general/template.xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="content">
+		<h:form id="frmtable">
+			<p:fieldset legend="Plazas" toggleable="true"  toggleSpeed="500">
+			 	<p:growl id="growl" />
+			 	<p:messages id="msg"/>
+		     	<p:dataTable id="tblPlaza" paginator="true" rows="50" value="#{crudApeView.lstPlazas}"  var="plaza" emptyMessage="No existen plazas registradas">
+					<p:column  headerText="Nombre">
+						<h:outputText value="#{plaza.nombre}"/>
+					</p:column>
+					<p:column  headerText="Dirección">
+						<h:outputText value="#{plaza.direccion}"/>
+					</p:column>
+					<p:column  headerText="Número locales">
+						<h:outputText value="#{plaza.numeroLocales}"/>
+					</p:column>
+					<p:column  headerText="Locales activos">
+						<h:outputText value="#{plaza.localesActivos}"/>
+					</p:column>
+					<p:column  headerText="Observaciones">
+						<h:outputText value="#{plaza.observaciones}"/>
+					</p:column>
+					<p:column headerText="Editar">
+	                	<p:commandButton  value="Editar" update=":frmtable,:frmDlg">
+						    <f:setPropertyActionListener target="#{crudApeView.plazaTmp}" value="#{plaza}" />
+						</p:commandButton>
+		            </p:column>
+		            <p:column headerText="Eliminar">
+		                <p:commandButton action="#{crudApeView.eliminar}" update=":frmtable,:frmDlg" value="Eliminar" icon="ui-icon-trash" >
+						    <f:setPropertyActionListener target="#{crudApeView.plazaTmp}" value="#{plaza}" />
+						</p:commandButton>
+		            </p:column>
+		            <f:facet name="footer">
+		            	<h:outputText value="Hay un total de #{crudApeView.count} plazas registradas"/>
+		            </f:facet>
+				</p:dataTable>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</p:fieldset>
+		</h:form>
+		<h:form id="frmDlg">
+			<p:fieldset id="flPla" widgetVar="flPla" legend="Plaza" toggleable="true"  toggleSpeed="500">
+			<!-- <p:dialog id="dlgId" header="Plaza" widgetVar="dlg" modal="true" appendTo="@(body)" closeOnEscape="true" showEffect="explode" hideEffect="clip" height="300"> -->
+				<h:panelGrid columns="2">
+				<p:outputLabel value="Nombre: "/> <p:inputText value="#{crudApeView.plazaTmp.nombre}" required="true"/>
+				<p:outputLabel value="Dirección: "/> <p:inputText value="#{crudApeView.plazaTmp.direccion}"/>
+				<p:outputLabel value="Número locales: "/> <p:inputText type="number"  value="#{crudApeView.plazaTmp.numeroLocales}" required="true"/>
+				<p:outputLabel value="Locales activos: "/> <p:inputText type="number" value="#{crudApeView.plazaTmp.localesActivos}" required="true"/>
+				<p:outputLabel value="Observaciones: "/> <p:inputTextarea value="#{crudApeView.plazaTmp.observaciones}" required="false"/>
+				<p:separator/><p:separator/>
+				</h:panelGrid>
+				<!-- <f:facet name="footer"> -->
+					<h:panelGrid columns="2">
+						<p:commandButton action="#{crudApeView.guardar}" value="Guardar" oncomplete="PF('flPla').toggle();"  update=":frmtable,:frmDlg,:frmtable:msg,:frmtable:growl"/>
+						<p:commandButton value="Cancelar" action="#{crudApeView.initTmp}" oncomplete="PF('flPla').toggle();"  update=":frmtable,:frmDlg"/>
+					</h:panelGrid>
+            	<!-- </f:facet> -->
+			<!-- </p:dialog> -->
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</p:fieldset>
+		</h:form>
+    </ui:define>
+</ui:composition>

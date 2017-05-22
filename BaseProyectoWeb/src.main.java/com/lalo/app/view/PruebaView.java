@@ -14,7 +14,10 @@ import com.lalo.config.model.RelPerfilMenu;
 import com.lalo.config.model.Usuario;
 import com.lalo.config.view.BackingBean;
 import com.lalo.config.view.ViewMethodDefault;
-
+/**
+ * @author Eduardo Cruz Zamorano
+ *
+ */
 
 @Component
 @SessionScoped

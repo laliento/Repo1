@@ -134,7 +134,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 		Integer high = 9000;
 		Integer result = r.nextInt(high-low) + low;
 		//contraseña ingresada por usuario
-		String pass="123";//r.nextInt(high-low) + low;
+		String pass="user@Ape";//r.nextInt(high-low) + low;
 		String saltRandom = result.toString();
 		String saltSha = shaPasswordEncoder.encodePassword(saltRandom, "lalum@");
 		//SHA512 que genera js cuando envia
